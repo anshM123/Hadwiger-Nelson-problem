@@ -280,6 +280,15 @@ equality.
 
 \section{Remarks}
 
+\begin{remark}[Optimizing the number of blocks]
+In the proof of Theorem~\ref{thm:slab} one may take $d=\lceil 3L/\log L\rceil$ instead of
+$\lceil4L\rceil$. Then $n\asymp d$ and $r\ge n/2-1\gtrsim L/\log L$, so
+$\log\bigl(\varepsilon r^{(d+1)/2}\bigr)\ge -L+\tfrac{3L}{2\log L}\bigl(\log L-\log\log L-O(1)\bigr)
+\to\infty$, which gives (ii), while (iii) holds as before. Hence
+$\chi(\R^2\times[0,\varepsilon]^k)=7$ already for
+$k\ge C\bigl(\log(1/\varepsilon)/\log\log(1/\varepsilon)\bigr)^2$.
+\end{remark}
+
 \begin{remark}[On bounded $k$]
 The lifted squared distance $|p-p'|^2+|s-t|^2$ must equal one exactly, so squared distances in
 the fiber are quantized at the scale $\lambda^2$ of the planar lattice, while Step~2 requires
