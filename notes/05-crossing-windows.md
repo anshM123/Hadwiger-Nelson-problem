@@ -58,7 +58,14 @@ Coordinates `u = 0`, `e* = (1,0)`, `w = (1,0)`, `K_12 ⊂ ω(w)` an arc leaving 
    from `w` and has color 1 on one side and color 2 on the other side arbitrarily close.
    Contradiction.
 
-So unit-arc interfaces at a triangle junction cannot produce walls in map-type colorings.
+Caveat: step 3 uses the triangle strip lemma at `w`, so it applies when `w` is exactly
+trichromatic. If the two tangential cones carry different colors, `w` is 4-chromatic and
+its strips follow the 4-cycle rule (a cycle label lies in `O(d)` when both its edges are
+negative), so step 3 must be replaced by a "no 4-chromatic points" lemma proved
+**without** the forbidden-arc hypothesis (SV Lemma 2 uses it). Order of proof matters.
+
+With that caveat: unit-arc interfaces at a triangle junction cannot produce walls in
+map-type colorings.
 Measurable version: needs "both sides" information for the interface (an interface
 continuum need not separate its two colors); to be addressed via thick/thin dichotomy.
 
