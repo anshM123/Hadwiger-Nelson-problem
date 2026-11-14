@@ -1,28 +1,31 @@
-# The Hadwiger–Nelson problem: no proper six-coloring of the plane
+# Colorings of the plane and its thin thickenings
 
-Goal: prove that every coloring of the Euclidean plane with six colors has a
-monochromatic pair of points at distance one. Together with Isbell's hexagonal
-seven-coloring this gives
+## Main result (paper/thin-thickenings.pdf)
 
-    χ(ℝ²) = 7.
+**Theorem.** There are absolute constants `C, ε₀ > 0` such that
 
-## Starting point
+    χ(ℝ² × [0,ε]^k) = 7   whenever 0 < ε < ε₀ and C·log²(1/ε) ≤ k ≤ ε⁻²/10,
 
-* **Lower bound 6.** *The Euclidean plane is not five-colorable* (OpenAI math
-  release, Sept. 2026, family 158) proves that no proper five-coloring exists, and
-  that a proper k-coloring exists iff a *weak measurable* k-coloring exists
-  (for every k). Its Lean formalization builds against Mathlib with only the
-  standard axioms (`propext`, `Classical.choice`, `Quot.sound`).
-* **Polygonal case.** Sokolov–Voronov, arXiv:2502.01958, prove that seven colors
-  are needed for polygonal colorings (and for map-type colorings with forbidden
-  unit arcs and cubic vertices).
+where χ is the chromatic number of the unit-distance graph (distance exactly one; colorings
+arbitrary, no measurability assumed). Moreover, for every δ > 0 there is a finite set K of
+diameter < δ with χ(ℝ² × K) = 7 — finitely many parallel planes, pairwise within distance δ,
+already need seven colors.
 
-The task is to rule out weak measurable six-colorings, i.e. to remove the
-regularity hypotheses from the six-color argument.
+This answers, with polylogarithmically many extra dimensions, Question 7.2 of
+V. Voronov (arXiv:2304.10163), who asked whether χ(ℝ² × [0,ε]^k) = 7 for small ε and some k
+independent of ε. Previously known: χ(ℝ² × [0,ε]²) ≥ 6.
+
+**Proof idea.** Majority colors over fibers that are weighted products of ternary Hamming
+cubes; a product form of the Frankl–Rödl/Keevash–Long cross-distance theorem forces the
+majority coloring of a fine planar lattice to avoid a whole interval of distances; this
+contradicts Voronov's theorem that the plane has no 6-coloring with a forbidden interval.
+Geometric block weights (base-r expansion) make the number of extra dimensions
+polylogarithmic.
 
 ## Layout
 
-* `notes/` – research notes, reductions, open sub-problems.
-* `paper/` – the manuscript.
-* `lean/` – formalization (builds on the five-color development).
-* `scripts/` – computations and certificates.
+* `paper/` – manuscripts (`thin-thickenings.tex/.pdf`; `main.tex` is a stub for the
+  six-color program).
+* `notes/` – research notes: the six-color program for the plane (00–06), pivot log (07).
+* `scripts/` – computations (palette experiments, sphere/quaternion unit-distance graphs,
+  Borsuk experiments, SAT/tabu coloring tools).

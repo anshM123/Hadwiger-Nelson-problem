@@ -25,3 +25,18 @@ If a finite unit-distance graph on the sphere of radius 1 (edges = 60° chords) 
 5-colorable, adding the center gives a non-6-colorable unit-distance graph in ℝ³,
 improving Nechushtan's χ(ℝ³) ≥ 6 (2002). First step: test whether dense band graphs
 (angles in [60°−δ, 60°+δ]) are 5-colorable (sphere_ub.py).
+
+## Outcome of the R³ search
+* Band graphs on the unit sphere (chords in [1−δ,1+δ], 2k–30k Fibonacci points): tabu search
+  found no proper 6-coloring (best 9 conflicts at N=2000), suggesting the sphere is rich, but
+  this is a forbidden-interval statement. Exact closure constructions on the sphere are sparse
+  (degree ≈ 4) because non-commuting rotations produce no coincidences. Dropped.
+
+## Result obtained: thin thickenings of the plane (paper/thin-thickenings.tex)
+* Transference: forbidden-interval theorem in ℝ^m ⇒ exact-distance theorem in ℝ^m × K, K a
+  weighted product of ternary Hamming cubes (Keevash–Long Cor. 9 + product induction with
+  Markov halving + base-r window lemma + nearest-lattice-point extension + rescaling).
+* With Voronov Thm 1.1: χ(ℝ² × [0,ε]^k) = 7 for C log²(1/ε) ≤ k ≤ ε⁻²/10.
+* Possible improvements: optimize d to get k = O((log(1/ε)/loglog(1/ε))²); bounded k needs
+  arithmetic distance theorems (Magyar-type) for dense subsets of {0..L}^k, k ≥ 5, with
+  local-obstruction control.
