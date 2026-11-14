@@ -11,9 +11,12 @@ arbitrary, no measurability assumed). Moreover, for every δ > 0 there is a fini
 diameter < δ with χ(ℝ² × K) = 7 — finitely many parallel planes, pairwise within distance δ,
 already need seven colors.
 
-This answers, with polylogarithmically many extra dimensions, Question 7.2 of
-V. Voronov (arXiv:2304.10163), who asked whether χ(ℝ² × [0,ε]^k) = 7 for small ε and some k
-independent of ε. Previously known: χ(ℝ² × [0,ε]²) ≥ 6.
+This makes progress on Question 7.2 of
+V. Voronov (arXiv:2304.10163; originally Kanel-Belov–Voronov–Cherkashin 2018), who asked whether
+χ(ℝ² × [0,ε]^k) = 7 for small ε and some k independent of ε — that question (bounded k) remains
+open; we show polylogarithmic k suffices. Previously the best lower bound for such slabs was 6.
+An independent referee pass found no mathematical errors (fixes applied: Keevash–Long numbering,
+attributions, wording).
 
 **Proof idea.** Majority colors over fibers that are weighted products of ternary Hamming
 cubes; a product form of the Frankl–Rödl/Keevash–Long cross-distance theorem forces the

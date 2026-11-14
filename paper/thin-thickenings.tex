@@ -33,9 +33,11 @@ no two points at Euclidean distance exactly one receive the same color. We prove
   \qquad\text{whenever}\qquad
   C\log^2(1/\varepsilon)\le k\le \tfrac1{10}\varepsilon^{-2}
 \]
-and $\varepsilon$ is sufficiently small, where $C$ is an absolute constant. Voronov asked
-whether $\chi(\R^2\times[0,\varepsilon]^k)=7$ for small $\varepsilon$ and some $k$ independent
-of $\varepsilon$; our result gives this with $k$ growing only polylogarithmically. More
+and $\varepsilon$ is sufficiently small, where $C$ is an absolute constant. Previously the
+best lower bound for such slabs was $6$. Kanel-Belov, Voronov and Cherkashin, and later Voronov,
+asked whether $\chi(\R^2\times[0,\varepsilon]^k)=7$ for small $\varepsilon$ and some $k$
+independent of $\varepsilon$; that question remains open, and our result shows that $k$ of
+polylogarithmic size in $1/\varepsilon$ suffices. More
 generally, for every $\delta>0$ there is a finite set $K$ of diameter less than $\delta$ with
 $\chi(\R^2\times K)=7$. No measurability or regularity of the colorings is assumed. The proof
 transfers Voronov's theorem on colorings of the plane with a forbidden interval of distances,
@@ -59,16 +61,22 @@ For every $\varepsilon>0$, $\chi_{[1-\varepsilon,1+\varepsilon]}(\R^2)\ge7$.
 \end{theorem}
 
 Another relaxation keeps the single forbidden distance one but thickens the plane in extra
-dimensions. It is known that $\chi(\R^2\times[0,\varepsilon]^2)\ge6$ and
-$\chi(\R^3\times[0,\varepsilon]^6)\ge10$ for small $\varepsilon$; see the discussion
-in~\cite[Section~7]{Voronov}. Voronov asked:
+dimensions. Kanel-Belov, Voronov and Cherkashin~\cite{KVC} proved
+$\chi(\R^2\times[0,\varepsilon]^2)\ge6$ for every $\varepsilon>0$ and
+$\chi(\R^2\times[0,\varepsilon]^k)\le7$ for $\varepsilon<\varepsilon_0(k)$, and
+Cherkashin, Kanel-Belov, Strukov and Voronov~\cite{CKSV} proved
+$\chi(\R^3\times[0,\varepsilon]^6)\ge10$. The following question goes back to~\cite{KVC}; in this
+form it is~\cite[Question~7.2]{Voronov}.
 
-\begin{question}[{\cite[Question~7.2]{Voronov}}]\label{q:voronov}
+\begin{question}\label{q:voronov}
 Is it true that $\chi(\R^2\times[0,\varepsilon]^k)=7$ for small enough $\varepsilon>0$ and some
 $k$ independent of $\varepsilon$?
 \end{question}
 
-Our main result answers this with $k$ of polylogarithmic size.
+We make progress on Question~\ref{q:voronov}: seven colors are needed once the number of extra
+dimensions grows polylogarithmically in $1/\varepsilon$. For any fixed $k$ our results give
+$\chi(\R^2\times[0,\varepsilon]^k)=7$ only for $\varepsilon\ge\exp(-\sqrt{k/C})$, so the question
+as stated remains open.
 
 \begin{theorem}\label{thm:slab}
 There are absolute constants $C,\varepsilon_0>0$ such that
@@ -109,35 +117,37 @@ expansion covers it with $O(\log(1/\varepsilon))$ blocks.
 For $s,t\in\{0,1,2\}^n$ let $\dH(s,t)$ be the number of coordinates in which they differ, and
 let $\mu_n$ be the uniform probability measure on $\{0,1,2\}^n$.
 
-\begin{theorem}[Keevash--Long~{\cite[Corollary~9]{KeevashLong}}, extending Frankl--R\"odl~\cite{FranklRodl}]
+\begin{theorem}[Keevash--Long~{\cite[Corollary~1.9]{KeevashLong}}, extending Frankl--R\"odl~\cite{FranklRodl}]
 \label{thm:KL}
 For every $\eta\in(0,1/2)$ and $q\ge3$ there is $\gamma=\gamma(\eta,q)>0$ such that the
 following holds for every $n$. If $C,D\subset[q]^n$ and $|C||D|>(q-\gamma)^{2n}$, then for every
 integer $h\in(\eta n,(1-\eta)n)$ there are $x\in C$ and $y\in D$ with $\dH(x,y)=h$.
 \end{theorem}
 
-Fix $\gamma_0=\gamma(1/4,3)$ and put $\kappa=\log\bigl(3/(3-\gamma_0)\bigr)>0$. Let
+Fix $\gamma_0=\gamma(1/4,3)$; decreasing it if necessary we may assume $\gamma_0<1$. Put
+$\kappa=\log\bigl(3/(3-\gamma_0)\bigr)>0$ (natural logarithms throughout). Let
 \[
   H_n=\{h\in\Z:\ n/4<h<3n/4\}.
 \]
 
 \begin{lemma}\label{lem:product}
-Let $d\ge1$, $c\in(0,1]$ and $n\ge(\log(1/c)+(d-1)\log2)/\kappa+1$. Let
-$A,B\subset(\{0,1,2\}^n)^d$ with $\mu_n^{\otimes d}(A)\ge c$ and $\mu_n^{\otimes d}(B)\ge c$.
+Let $d\ge1$, $\beta\in(0,1]$ and $n\ge(\log(1/\beta)+(d-1)\log2)/\kappa+1$. Let
+$A,B\subset(\{0,1,2\}^n)^d$ with $\mu_n^{\otimes d}(A)\ge \beta$ and $\mu_n^{\otimes d}(B)\ge \beta$.
 Then for every $(h_1,\dots,h_d)\in H_n^d$ there are $a\in A$ and $b\in B$ with
 $\dH(a_i,b_i)=h_i$ for $i=1,\dots,d$.
 \end{lemma}
 
 \begin{proof}
-Induction on $d$. For $d=1$: $|A||B|\ge c^2 9^n$, and $c^2 9^n>(3-\gamma_0)^{2n}$ because
-$2n\kappa>2\log(1/c)$; apply Theorem~\ref{thm:KL} with $\eta=1/4$.
+Induction on $d$. For $d=1$: $|A||B|\ge \beta^2 9^n$, and $\beta^2 9^n>(3-\gamma_0)^{2n}$
+because $2n\kappa>2\log(1/\beta)$; apply Theorem~\ref{thm:KL} with $\eta=1/4$.
 
 For $d\ge2$ write $a=(u,x)$ with $u\in(\{0,1,2\}^n)^{d-1}$, $x\in\{0,1,2\}^n$, and let
-$A_u=\{x:(u,x)\in A\}$. Put $A'=\{u:\mu_n(A_u)\ge c/2\}$. Then
-$c\le\mu(A)\le\mu(A')+c/2$, so $\mu(A')\ge c/2$; define $B_v$ and $B'$ in the same way. Since
-$n\ge(\log(2/c)+(d-2)\log2)/\kappa+1$, the induction hypothesis with $c/2$ gives $u\in A'$ and
-$v\in B'$ with $\dH(u_i,v_i)=h_i$ for $i<d$. Now $\mu_n(A_u),\mu_n(B_v)\ge c/2$ and
-$n\ge\log(2/c)/\kappa+1$, so the case $d=1$ gives $x\in A_u$, $y\in B_v$ with
+$A_u=\{x:(u,x)\in A\}$. Put $A'=\{u:\mu_n(A_u)\ge \beta/2\}$. Then
+$\beta\le\mu(A)\le\mu(A')+\beta/2$, so $\mu(A')\ge \beta/2$; define $B_v$ and $B'$ in the same
+way. Since $n\ge(\log(2/\beta)+(d-2)\log2)/\kappa+1$, the induction hypothesis with $\beta/2$
+gives $u\in A'$ and $v\in B'$ with $\dH(u_i,v_i)=h_i$ for $i<d$. Now
+$\mu_n(A_u),\mu_n(B_v)\ge \beta/2$ and $n\ge\log(2/\beta)/\kappa+1$, so the case $d=1$ gives
+$x\in A_u$, $y\in B_v$ with
 $\dH(x,y)=h_d$. Then $a=(u,x)\in A$ and $b=(v,y)\in B$.
 \end{proof}
 
@@ -155,7 +165,7 @@ Then for all $s,t$,
   |\iota(s)-\iota(t)|^2=\lambda^2\sum_{i=1}^d r^{\,i-1}\,\dH(s_i,t_i),
 \end{equation}
 the image $K=\iota\bigl((\{0,1,2\}^n)^d\bigr)$ lies in $[0,\lambda_d]^{2nd}$, and
-$\operatorname{diam}K^2=\lambda^2 n\sum_i r^{i-1}$.
+$(\operatorname{diam}K)^2=\lambda^2 n\sum_i r^{i-1}$.
 
 \begin{lemma}\label{lem:window}
 Let $W=\sum_{i=1}^d r^{i-1}$. Every integer $M$ with $h_0W\le M\le h_0W+r^d-1$ has the form
@@ -198,7 +208,7 @@ $|p-p'|^2=\lambda^2N$ for an integer $N$ and $1=\lambda^2Q^2$, the number $M=Q^2
 integer with $|p-p'|^2+\lambda^2M=1$, and $a\le|p-p'|\le b$ means
 $h_0W\le M\le h_0W+r^d-1$. By Lemma~\ref{lem:window}, $M=\sum_i r^{i-1}h_i$ with
 $h_i\in H_n$. If $\mu(p)=\mu(p')=j$, then by~(i) Lemma~\ref{lem:product} applies to
-$A_p,A_{p'}$ with density $1/c$ and gives $s\in A_p$, $t\in A_{p'}$ with
+$A_p,A_{p'}$ with $\beta=1/c$ and gives $s\in A_p$, $t\in A_{p'}$ with
 $\dH(s_i,t_i)=h_i$ for all $i$. By~\eqref{eq:iso},
 \[
   \bigl|(p,\iota(s))-(p',\iota(t))\bigr|^2=|p-p'|^2+\lambda^2M=1,
@@ -223,8 +233,8 @@ This contradicts the hypothesis.
 
 \begin{remark}
 The coloring $\phi$ is arbitrary; no measurability is used. By the de Bruijn--Erd\H{o}s theorem
-the conclusion is witnessed by a finite unit-distance graph in $\R^2\times K$, although the
-argument does not exhibit one.
+(which uses the axiom of choice) the conclusion is witnessed by a finite unit-distance graph in
+$\R^2\times K$, although the argument does not exhibit one.
 \end{remark}
 
 \section{Upper bound and proofs of the main theorems}
@@ -257,14 +267,15 @@ $K\subset[0,\varepsilon]^{2nd}$.
 
 Condition (ii): $\lambda r^d\ge\tfrac12\varepsilon r^{(d+1)/2}\ge\tfrac12\varepsilon\,3^{(d+1)/2}
 \ge\tfrac12\varepsilon\,3^{2L}=\tfrac12\varepsilon^{1-2\log3}$, which exceeds $6\sqrt2+1$ for
-$\varepsilon$ small since $2\log3>1$.
+$\varepsilon$ small since $2\log3>1$. As $\lambda\le1$, this gives $\lambda(r^d-1)>6\sqrt2$.
 
 Condition (iii): $h_0\le n/4+1\le r$, so $h_0W\le r\cdot r^d/(r-1)\le\tfrac32r^d$ and
 $\lambda^2(h_0W+r^d)\le\tfrac52\lambda^2r^d\le\tfrac52\varepsilon^2r\le\tfrac52\varepsilon^2C_1L<1$
 for $\varepsilon$ small.
 
 Theorem~\ref{thm:transfer} gives $\chi(\R^2\times K)\ge7$ with $K\subset[0,\varepsilon]^{2nd}$.
-Since $2nd\le 2C_1L(4L+1)\le C\log^2(1/\varepsilon)$ for a suitable absolute $C$, and
+Since $2nd\le 2C_1L(4L+1)\le C\log^2(1/\varepsilon)$ for a suitable absolute $C$ (which is
+not explicit, as it depends on $\gamma(1/4,3)$ from Theorem~\ref{thm:KL}), and
 $\R^2\times[0,\varepsilon]^{2nd}$ embeds isometrically in $\R^2\times[0,\varepsilon]^k$ for
 $k\ge2nd$ (pad with zeros), we get $\chi(\R^2\times[0,\varepsilon]^k)\ge7$. If also
 $k\le\tfrac1{10}\varepsilon^{-2}$, then $\operatorname{diam}[0,\varepsilon]^k=\varepsilon\sqrt k<0.4$
@@ -301,13 +312,19 @@ local obstructions, or a forbidden-interval theorem tolerating sparse sets of di
 \end{remark}
 
 \begin{remark}[Other dimensions]
-The proof of Theorem~\ref{thm:transfer} works verbatim in $\R^m$ (lattice $\lambda\Z^m$, covering
-radius $\lambda\sqrt m/2$, condition (ii) replaced by $\lambda(r^d-1)>6\sqrt{2m}$): if
+The proof of Theorem~\ref{thm:transfer} works in $\R^m$ with the lattice $\lambda\Z^m$, covering
+radius $\lambda\sqrt m/2$, and condition (ii) replaced by $\lambda(r^d-1)>6\sqrt m$: if
 $\chi_{[1-\varepsilon,1+\varepsilon]}(\R^m)\ge c+1$ for all $\varepsilon>0$, then
-$\chi(\R^m\times[0,\varepsilon]^k)\ge c+1$ for $k\ge C_m\log^2(1/\varepsilon)$.
+$\chi(\R^m\times[0,\varepsilon]^k)\ge c+1$ for all sufficiently small $\varepsilon$ and
+$k\ge C_{m,c}\log^2(1/\varepsilon)$. For $m=3$ this recovers only
+$\chi(\R^3\times[0,\varepsilon]^k)\ge10$, which is weaker than the result of~\cite{CKSV}.
 \end{remark}
 
 \begin{thebibliography}{9}
+
+\bibitem{CKSV}
+D.~Cherkashin, A.~Kanel-Belov, G.~Strukov and V.~Voronov, On the chromatic numbers of
+3-dimensional slices, arXiv:2208.02230.
 
 \bibitem{deGrey}
 A.~D.~N.~J. de~Grey, The chromatic number of the plane is at least 5,
@@ -320,6 +337,12 @@ P.~Frankl and V.~R\"odl, Forbidden intersections,
 \bibitem{KeevashLong}
 P.~Keevash and E.~Long, Frankl--R\"odl type theorems for codes and permutations,
 \emph{Trans. Amer. Math. Soc.} \textbf{369} (2017), 1147--1162; arXiv:1402.6294.
+(The cross-distance statement is Corollary~1.9 of the journal version; in arXiv v1 it appears
+as Theorem~8 and the remark following it.)
+
+\bibitem{KVC}
+A.~Kanel-Belov, V.~Voronov and D.~Cherkashin, On the chromatic number of an infinitesimal plane
+layer, \emph{St. Petersburg Math. J.} \textbf{29} (2018); arXiv:1512.06444.
 
 \bibitem{Voronov}
 V.~Voronov, The chromatic number of the plane with an interval of forbidden distances is at
