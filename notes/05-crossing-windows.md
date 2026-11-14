@@ -40,3 +40,30 @@ essentially absent near `w` outside that cone.
 
 **Sub-problem U.** Handle triangle junctions with a unit-arc interface (either rule them
 out, or run the circle analysis with the degenerate direction treated separately).
+
+## Resolution of the wall configuration (map-type setting)
+Coordinates `u = 0`, `e* = (1,0)`, `w = (1,0)`, `K_12 ⊂ ω(w)` an arc leaving `0` upward
+(`x ≈ y²/2`), color 1 to its left, color 2 to its right, `K_23`, `K_31` with
+`v_23·e* > 0 > v_31·e*` (the only case producing an X-crossing).
+
+1. Near `w`, sector sweeping (circles about points of each sector at `u`) excludes
+   `{2,3}` just outside `w` and `{1,3}` just inside; `K_12` excludes `{1,2}` in the two
+   tangential cones at `w` (`Δ(K_12)` contains a punctured neighborhood of `w` minus the
+   radial double cone). This is locally consistent: e.g. `z = w + (s,0)` colored 1 has
+   `ω(z)` equal to the circle of `K_12` shifted right by `s`, which avoids color 1 near `0`.
+2. Hence `w` carries colors 1 (outer radial cone), 2 (inner radial cone) and at least one
+   color of `T^c` (tangential cones): `w` is a junction of type `{1,2,x}` or worse.
+3. `w`'s own strip lemma: for all but finitely many directions `d` from `w`, one side of
+   `ω(w)` near `w+d` is free of `{1,2,x}`. But `K_12 ⊂ ω(w)` occupies an arc of directions
+   from `w` and has color 1 on one side and color 2 on the other side arbitrarily close.
+   Contradiction.
+
+So unit-arc interfaces at a triangle junction cannot produce walls in map-type colorings.
+Measurable version: needs "both sides" information for the interface (an interface
+continuum need not separate its two colors); to be addressed via thick/thin dichotomy.
+
+## Intermediate target
+SV Question 2: seven colors are needed for every locally finite Jordan map coloring
+(unit arcs and trichromatic vertices of degree > 3 allowed). Plan: Voronov's argument
+with exact distances, homological bookkeeping instead of vertex degrees, the wall
+resolution above, and L3′ for distance exactly one.
