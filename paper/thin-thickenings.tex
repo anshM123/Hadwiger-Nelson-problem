@@ -1,6 +1,7 @@
 \documentclass[11pt]{amsart}
 \usepackage[margin=1.1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
 
 \newtheorem{theorem}{Theorem}
@@ -25,240 +26,276 @@
 \begin{document}
 
 \begin{abstract}
-For a set $X\subset\R^d$ let $\chi(X)$ be the least number of colors in a coloring of $X$
-with no two points at Euclidean distance exactly one having the same color. We show that for
-every $\delta>0$ there is a finite set $K$ of diameter less than $\delta$ in some Euclidean
-space such that $\chi(\R^2\times K)=7$. Consequently $\chi(\R^2\times[0,\varepsilon]^k)=7$
-whenever $\varepsilon$ is small and $k\ge C/\varepsilon$ for an absolute constant $C$. This
-answers, with $k$ depending on $\varepsilon$, a question of Voronov, who asked whether
-$\chi(\R^2\times[0,\varepsilon]^k)=7$ for small $\varepsilon$ and some $k$ independent of
-$\varepsilon$. The colorings are arbitrary: no measurability or regularity is assumed. The
-proof combines Voronov's theorem on colorings of the plane with a forbidden interval of
-distances and the Frankl--R\"odl theorem on forbidden distances in codes, in the cross form
-of Keevash and Long.
+For $X\subset\R^D$ let $\chi(X)$ be the least number of colors in a coloring of $X$ in which
+no two points at Euclidean distance exactly one receive the same color. We prove that
+\[
+  \chi\bigl(\R^2\times[0,\varepsilon]^k\bigr)=7
+  \qquad\text{whenever}\qquad
+  C\log^2(1/\varepsilon)\le k\le \tfrac1{10}\varepsilon^{-2}
+\]
+and $\varepsilon$ is sufficiently small, where $C$ is an absolute constant. Voronov asked
+whether $\chi(\R^2\times[0,\varepsilon]^k)=7$ for small $\varepsilon$ and some $k$ independent
+of $\varepsilon$; our result gives this with $k$ growing only polylogarithmically. More
+generally, for every $\delta>0$ there is a finite set $K$ of diameter less than $\delta$ with
+$\chi(\R^2\times K)=7$. No measurability or regularity of the colorings is assumed. The proof
+transfers Voronov's theorem on colorings of the plane with a forbidden interval of distances,
+using a product form of the Frankl--R\"odl theorem on forbidden distances in codes.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-The Hadwiger--Nelson problem asks for the chromatic number $\chi(\R^2)$ of the graph on the
-plane in which two points are adjacent when their distance is exactly one. The hexagonal
-coloring gives $\chi(\R^2)\le 7$. De~Grey~\cite{deGrey} proved $\chi(\R^2)\ge5$, and the
-value is still open.
+The Hadwiger--Nelson problem asks for the chromatic number $\chi(\R^2)$ of the unit-distance
+graph of the plane. The published bounds are $5\le\chi(\R^2)\le7$, the lower bound due to
+de~Grey~\cite{deGrey}.
 
-Several relaxations are better understood. For $0<\varepsilon<1$ write
-$\chi_{[1-\varepsilon,1+\varepsilon]}(\R^2)$ for the least number of colors in a coloring of
-the plane in which no two points at distance in $[1-\varepsilon,1+\varepsilon]$ share a color.
-Voronov~\cite{Voronov} proved:
+A classical relaxation forbids an interval of distances. For $0<\varepsilon<1$ let
+$\chi_{[1-\varepsilon,1+\varepsilon]}(\R^2)$ be the least number of colors in a coloring of the
+plane in which no two points at distance in $[1-\varepsilon,1+\varepsilon]$ share a color.
 
 \begin{theorem}[Voronov~{\cite[Theorem~1.1]{Voronov}}]\label{thm:voronov}
 For every $\varepsilon>0$, $\chi_{[1-\varepsilon,1+\varepsilon]}(\R^2)\ge7$.
 \end{theorem}
 
-A different relaxation thickens the plane in extra dimensions while keeping the single
-forbidden distance one. It is known that $\chi(\R^2\times[0,\varepsilon]^2)\ge 6$ and
-$\chi(\R^3\times[0,\varepsilon]^6)\ge10$ for small $\varepsilon$
-(see~\cite[Section~7]{Voronov} and the references there), and Voronov asked:
+Another relaxation keeps the single forbidden distance one but thickens the plane in extra
+dimensions. It is known that $\chi(\R^2\times[0,\varepsilon]^2)\ge6$ and
+$\chi(\R^3\times[0,\varepsilon]^6)\ge10$ for small $\varepsilon$; see the discussion
+in~\cite[Section~7]{Voronov}. Voronov asked:
 
 \begin{question}[{\cite[Question~7.2]{Voronov}}]\label{q:voronov}
-Is it true that $\chi(\R^2\times[0,\varepsilon]^k)=7$ for sufficiently small $\varepsilon>0$
-and some $k$ independent of $\varepsilon$?
+Is it true that $\chi(\R^2\times[0,\varepsilon]^k)=7$ for small enough $\varepsilon>0$ and some
+$k$ independent of $\varepsilon$?
 \end{question}
 
-Our main result says that seven colors are needed, and suffice, once the number of extra
-dimensions is allowed to grow like $1/\varepsilon$.
+Our main result answers this with $k$ of polylogarithmic size.
+
+\begin{theorem}\label{thm:slab}
+There are absolute constants $C,\varepsilon_0>0$ such that
+\[
+  \chi\bigl(\R^2\times[0,\varepsilon]^k\bigr)=7
+\]
+for all $0<\varepsilon<\varepsilon_0$ and all integers $k$ with
+$C\log^2(1/\varepsilon)\le k\le\tfrac1{10}\varepsilon^{-2}$.
+\end{theorem}
 
 \begin{theorem}\label{thm:main}
-For every $\delta>0$ there exist $n\in\mathbb N$ and a finite set $K\subset\R^{2n}$ with
-$\operatorname{diam}K<\delta$ such that
-\[
-  \chi(\R^2\times K)=7 .
-\]
+For every $\delta>0$ there is a finite set $K$ in some Euclidean space with
+$\operatorname{diam}K<\delta$ and $\chi(\R^2\times K)=7$.
 \end{theorem}
 
-\begin{corollary}\label{cor:slab}
-There are absolute constants $C,\varepsilon_0>0$ such that
-$\chi(\R^2\times[0,\varepsilon]^k)=7$ whenever $0<\varepsilon<\varepsilon_0$ and
-$C/\varepsilon\le k\le \varepsilon^{-2}/10$.
-\end{corollary}
-
-Here $\R^2\times K$ is a union of finitely many parallel translates of a plane in
-$\R^{2+2n}$, all within distance $\delta$ of one another. The upper bound
-$\chi\le7$ is elementary (Proposition~\ref{prop:upper}); the content is the lower bound,
-which holds for arbitrary colorings.
-
-The lower bound is a special case of a general transference principle.
-
-\begin{theorem}\label{thm:transfer}
-Let $m\ge1$ and $c\ge1$ be integers, and suppose that for every $\varepsilon>0$ every
-$c$-coloring of $\R^m$ has two points of the same color at distance in
-$[1-\varepsilon,1+\varepsilon]$. Then for every $\delta>0$ there is a finite set $K$ of
-diameter less than $\delta$ in some Euclidean space such that $\chi(\R^m\times K)\ge c+1$.
-\end{theorem}
-
-Theorem~\ref{thm:main} follows from Theorem~\ref{thm:transfer} with $m=2$, $c=6$ and
-Theorem~\ref{thm:voronov}, together with Proposition~\ref{prop:upper}.
+The set $\R^2\times K$ in Theorem~\ref{thm:main} is a union of finitely many parallel planes,
+pairwise within distance $\delta$. The upper bounds are elementary
+(Proposition~\ref{prop:upper}); the content is the lower bound, valid for arbitrary colorings.
+It comes from a transference principle (Theorem~\ref{thm:transfer}) that converts a
+forbidden-interval theorem in $\R^m$ into an exact-distance theorem in $\R^m\times K$.
 
 \subsection*{Idea of the proof}
-A coloring of $\R^m\times K$ assigns to each point $p$ of a fine lattice in $\R^m$ a coloring of
-the fiber $\{p\}\times K$. We take $K$ to be a scaled image of the ternary Hamming cube
-$\{0,1,2\}^n$, embedded so that squared Euclidean distances are proportional to Hamming
-distances. Let $m(p)$ be the most frequent color on the fiber over $p$. If two lattice points
-$p,p'$ whose distance is slightly less than one receive the same majority color, the two
-majority classes are dense subsets of $\{0,1,2\}^n$; by the Frankl--R\"odl theorem for codes,
-in the cross form of Keevash and Long, they contain a pair at any prescribed Hamming distance in
-the bulk range. Choosing that distance so that the lift of the pair has Euclidean length exactly
-one gives a monochromatic unit pair. Hence the majority coloring of the lattice avoids a whole
-interval of distances below one, and after extending it to the plane this contradicts the
-forbidden-interval hypothesis.
+A coloring of $\R^2\times K$ assigns to each point $p$ of a fine lattice in $\R^2$ a coloring of
+the fiber $\{p\}\times K$. We take $K$ to be an embedded product of ternary Hamming cubes,
+scaled so that squared Euclidean distances in $K$ are weighted sums of block Hamming distances
+with weights $1,r,r^2,\dots$. Let $\mu(p)$ be the most frequent color on the fiber over $p$. If
+two lattice points at distance slightly below one receive the same majority color, a product
+form of the Frankl--R\"odl theorem (Lemma~\ref{lem:product}) yields a pair of points in the two
+majority classes whose block distances are any prescribed vector in the bulk range. The weights
+turn such vectors into every integer in a long window, so the lifted pair can be made to have
+length exactly one. Hence the majority coloring avoids a whole interval of distances, which
+contradicts Theorem~\ref{thm:voronov}. The geometric weights are what make $k$
+polylogarithmic: the window must be long compared with the lattice spacing, and a base-$r$
+expansion covers it with $O(\log(1/\varepsilon))$ blocks.
 
-\section{Tools}
+\section{Forbidden distances in products of codes}
 
-For $s,t\in\{0,1,2\}^n$ let $\dH(s,t)$ be the number of coordinates in which they differ.
+For $s,t\in\{0,1,2\}^n$ let $\dH(s,t)$ be the number of coordinates in which they differ, and
+let $\mu_n$ be the uniform probability measure on $\{0,1,2\}^n$.
 
-\begin{theorem}[Keevash--Long~{\cite[Corollary~9]{KeevashLong}}; Frankl--R\"odl~\cite{FranklRodl}]
+\begin{theorem}[Keevash--Long~{\cite[Corollary~9]{KeevashLong}}, extending Frankl--R\"odl~\cite{FranklRodl}]
 \label{thm:KL}
 For every $\eta\in(0,1/2)$ and $q\ge3$ there is $\gamma=\gamma(\eta,q)>0$ such that the
-following holds for every $n$. If $C,D\subset[q]^n$ satisfy $|C||D|>(q-\gamma)^{2n}$, then for
-every integer $h\in(\eta n,(1-\eta)n)$ there are $x\in C$ and $y\in D$ with $\dH(x,y)=h$.
+following holds for every $n$. If $C,D\subset[q]^n$ and $|C||D|>(q-\gamma)^{2n}$, then for every
+integer $h\in(\eta n,(1-\eta)n)$ there are $x\in C$ and $y\in D$ with $\dH(x,y)=h$.
 \end{theorem}
 
-For $q=3$, $\eta=1/4$, $\gamma=\gamma(1/4,3)$ and an integer $c\ge1$, let $n_0(c)$ be the
-least integer with $\bigl(3/(3-\gamma)\bigr)^{2n_0(c)}>c^2$. Then for $n\ge n_0(c)$ any two sets
-$C,D\subset\{0,1,2\}^n$ with $|C|,|D|\ge 3^n/c$ satisfy $|C||D|\ge 3^{2n}/c^2>(3-\gamma)^{2n}$,
-the hypothesis of Theorem~\ref{thm:KL}.
-
-\medskip
-\noindent\emph{The embedding.} Let $\tau(0)=(0,0)$, $\tau(1)=(1,0)$,
-$\tau(2)=(1/2,\sqrt3/2)$, the vertices of a unit equilateral triangle. For $\lambda>0$ define
+Fix $\gamma_0=\gamma(1/4,3)$ and put $\kappa=\log\bigl(3/(3-\gamma_0)\bigr)>0$. Let
 \[
-  \iota_\lambda:\{0,1,2\}^n\to\R^{2n},\qquad
-  \iota_\lambda(s)=\lambda\bigl(\tau(s_1),\dots,\tau(s_n)\bigr).
+  H_n=\{h\in\Z:\ n/4<h<3n/4\}.
 \]
-Then
+
+\begin{lemma}\label{lem:product}
+Let $d\ge1$, $c\in(0,1]$ and $n\ge(\log(1/c)+(d-1)\log2)/\kappa+1$. Let
+$A,B\subset(\{0,1,2\}^n)^d$ with $\mu_n^{\otimes d}(A)\ge c$ and $\mu_n^{\otimes d}(B)\ge c$.
+Then for every $(h_1,\dots,h_d)\in H_n^d$ there are $a\in A$ and $b\in B$ with
+$\dH(a_i,b_i)=h_i$ for $i=1,\dots,d$.
+\end{lemma}
+
+\begin{proof}
+Induction on $d$. For $d=1$: $|A||B|\ge c^2 9^n$, and $c^2 9^n>(3-\gamma_0)^{2n}$ because
+$2n\kappa>2\log(1/c)$; apply Theorem~\ref{thm:KL} with $\eta=1/4$.
+
+For $d\ge2$ write $a=(u,x)$ with $u\in(\{0,1,2\}^n)^{d-1}$, $x\in\{0,1,2\}^n$, and let
+$A_u=\{x:(u,x)\in A\}$. Put $A'=\{u:\mu_n(A_u)\ge c/2\}$. Then
+$c\le\mu(A)\le\mu(A')+c/2$, so $\mu(A')\ge c/2$; define $B_v$ and $B'$ in the same way. Since
+$n\ge(\log(2/c)+(d-2)\log2)/\kappa+1$, the induction hypothesis with $c/2$ gives $u\in A'$ and
+$v\in B'$ with $\dH(u_i,v_i)=h_i$ for $i<d$. Now $\mu_n(A_u),\mu_n(B_v)\ge c/2$ and
+$n\ge\log(2/c)/\kappa+1$, so the case $d=1$ gives $x\in A_u$, $y\in B_v$ with
+$\dH(x,y)=h_d$. Then $a=(u,x)\in A$ and $b=(v,y)\in B$.
+\end{proof}
+
+\section{The fibers}
+
+Let $\tau(0)=(0,0)$, $\tau(1)=(1,0)$, $\tau(2)=(1/2,\sqrt3/2)$, the vertices of a unit
+equilateral triangle. Fix integers $n\ge8$ and $d\ge1$, put $r=|H_n|$ and $h_0=\min H_n$, and
+note $r\ge n/2-1\ge3$. For $\lambda>0$ let $\lambda_i=\lambda\,r^{(i-1)/2}$ and define
+\[
+  \iota:(\{0,1,2\}^n)^d\to\R^{2nd},\qquad
+  \iota(s)=\bigl(\lambda_i\tau(s_{i,j})\bigr)_{1\le i\le d,\ 1\le j\le n}.
+\]
+Then for all $s,t$,
 \begin{equation}\label{eq:iso}
-  |\iota_\lambda(s)-\iota_\lambda(t)|^2=\lambda^2\,\dH(s,t)\qquad(s,t\in\{0,1,2\}^n),
+  |\iota(s)-\iota(t)|^2=\lambda^2\sum_{i=1}^d r^{\,i-1}\,\dH(s_i,t_i),
 \end{equation}
-the image lies in $[0,\lambda]^{2n}$, and its diameter is $\lambda\sqrt n$.
+the image $K=\iota\bigl((\{0,1,2\}^n)^d\bigr)$ lies in $[0,\lambda_d]^{2nd}$, and
+$\operatorname{diam}K^2=\lambda^2 n\sum_i r^{i-1}$.
 
-\section{The transference theorem}
+\begin{lemma}\label{lem:window}
+Let $W=\sum_{i=1}^d r^{i-1}$. Every integer $M$ with $h_0W\le M\le h_0W+r^d-1$ has the form
+$M=\sum_{i=1}^d r^{i-1}h_i$ with $h_i\in H_n$.
+\end{lemma}
 
-\begin{proof}[Proof of Theorem~\ref{thm:transfer}]
-Fix $\delta>0$. Let $Q$ be a large positive integer, put $\lambda=1/Q$, and let
+\begin{proof}
+Write $M-h_0W=\sum_i e_ir^{i-1}$ in base $r$ with digits $0\le e_i\le r-1$, and put
+$h_i=h_0+e_i$. Since $H_n$ consists of the $r$ consecutive integers $h_0,\dots,h_0+r-1$, each
+$h_i\in H_n$.
+\end{proof}
+
+\section{Transference}
+
+\begin{theorem}\label{thm:transfer}
+Let $c\ge1$, and suppose that for every $\varepsilon>0$ every $c$-coloring of $\R^2$ has two
+points of the same color at distance in $[1-\varepsilon,1+\varepsilon]$. Let $n\ge8$, $d\ge1$
+and $Q\ge1$ be integers, put $\lambda=1/Q$, and let $r,h_0,W,K$ be as above. Assume
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $n\ge(\log c+(d-1)\log2)/\kappa+1$;
+\item $\lambda(r^d-1)>6\sqrt2$;
+\item $\lambda^2(h_0W+r^d)<1$.
+\end{enumerate}
+Then every $c$-coloring of $\R^2\times K$ has two points of the same color at distance one.
+\end{theorem}
+
+\begin{proof}
+Suppose $\phi:\R^2\times K\to\{1,\dots,c\}$ has no monochromatic pair at distance one.
+
+\emph{Majority coloring.} Let $\Lambda=\lambda\Z^2$. For $p\in\Lambda$ define
+$f_p(s)=\phi(p,\iota(s))$ on $(\{0,1,2\}^n)^d$, let $\mu(p)$ be a most frequent value of
+$f_p$, and put $A_p=f_p^{-1}(\mu(p))$. Then $|A_p|\ge 3^{nd}/c$.
+
+\emph{Step 1: an avoided interval.} Set
 \[
-  n=\max\Bigl(n_0(c),\ \Bigl\lceil \tfrac{12\sqrt m}{\lambda}\Bigr\rceil+1\Bigr),
-  \qquad K=\iota_\lambda(\{0,1,2\}^n)\subset\R^{2n}.
+  b=\sqrt{1-\lambda^2h_0W},\qquad a=\sqrt{1-\lambda^2(h_0W+r^d-1)},
 \]
-For $Q$ large we have $n\le 12\sqrt m\,Q+2$, so $\lambda^2n\le 12\sqrt m\,\lambda+2\lambda^2$
-tends to zero. Choose $Q$ so large that $\operatorname{diam}K=\lambda\sqrt n<\delta$ and
-$\tfrac34\lambda^2n<1$.
-
-Suppose, for a contradiction, that $\phi:\R^m\times K\to\{1,\dots,c\}$ has no monochromatic
-pair at distance one. Let $\Lambda=\lambda\Z^m$. For $p\in\Lambda$ define
-$f_p(s)=\phi(p,\iota_\lambda(s))$ on $\{0,1,2\}^n$, let $\mu(p)$ be a most frequent value of
-$f_p$, and put $A_p=f_p^{-1}(\mu(p))$, so that $|A_p|\ge3^n/c$.
-
-\emph{Step 1: $\mu$ avoids an interval of lattice distances.} Let
+which are real and positive by~(iii). Let $p,p'\in\Lambda$ with $a\le|p-p'|\le b$. Since
+$|p-p'|^2=\lambda^2N$ for an integer $N$ and $1=\lambda^2Q^2$, the number $M=Q^2-N$ is an
+integer with $|p-p'|^2+\lambda^2M=1$, and $a\le|p-p'|\le b$ means
+$h_0W\le M\le h_0W+r^d-1$. By Lemma~\ref{lem:window}, $M=\sum_i r^{i-1}h_i$ with
+$h_i\in H_n$. If $\mu(p)=\mu(p')=j$, then by~(i) Lemma~\ref{lem:product} applies to
+$A_p,A_{p'}$ with density $1/c$ and gives $s\in A_p$, $t\in A_{p'}$ with
+$\dH(s_i,t_i)=h_i$ for all $i$. By~\eqref{eq:iso},
 \[
-  I=\Bigl(\sqrt{1-\tfrac34\lambda^2n},\ \sqrt{1-\tfrac14\lambda^2n}\Bigr).
-\]
-Let $p,p'\in\Lambda$ with $|p-p'|\in I$. Since $|p-p'|^2=\lambda^2N$ with $N\in\Z$ and
-$1=\lambda^2Q^2$, the number $h=Q^2-N$ is an integer with
-$|p-p'|^2+\lambda^2h=1$, and $|p-p'|\in I$ means exactly $h\in(n/4,3n/4)$.
-If $\mu(p)=\mu(p')=j$, then $|A_p|,|A_{p'}|\ge 3^n/c$ with $n\ge n_0(c)$, so
-Theorem~\ref{thm:KL} gives $s\in A_p$ and $t\in A_{p'}$ with $\dH(s,t)=h$. By~\eqref{eq:iso},
-\[
-  \bigl|(p,\iota_\lambda(s))-(p',\iota_\lambda(t))\bigr|^2
-  =|p-p'|^2+\lambda^2h=1,
+  \bigl|(p,\iota(s))-(p',\iota(t))\bigr|^2=|p-p'|^2+\lambda^2M=1,
 \]
 and both points have color $j$, a contradiction. Hence $\mu(p)\ne\mu(p')$ whenever
-$|p-p'|\in I$.
+$a\le|p-p'|\le b$.
 
-\emph{Step 2: extension to $\R^m$.} For $x\in\R^m$ let $\pi(x)\in\Lambda$ be a nearest lattice
-point (any fixed choice), so $|x-\pi(x)|\le\rho:=\lambda\sqrt m/2$, and set
-$g(x)=\mu(\pi(x))$. Write $I=(a,b)$ and let $J=[a+3\rho,\,b-3\rho]$. Using
-$\sqrt u-\sqrt v=(u-v)/(\sqrt u+\sqrt v)\ge(u-v)/2$ for $0\le v<u\le1$,
+\emph{Step 2: extension to the plane.} For $x\in\R^2$ let $\pi(x)\in\Lambda$ be a nearest
+lattice point (any fixed choice), so $|x-\pi(x)|\le\rho:=\lambda/\sqrt2$, and set
+$g(x)=\mu(\pi(x))$. Using $\sqrt u-\sqrt v\ge(u-v)/2$ for $0\le v<u\le1$ and~(ii),
 \[
-  b-a\ \ge\ \tfrac14\lambda^2 n\ >\ \tfrac14\lambda^2\cdot\tfrac{12\sqrt m}{\lambda}
-  \ =\ 3\sqrt m\,\lambda\ =\ 6\rho ,
+  b-a\ \ge\ \tfrac12\lambda^2(r^d-1)\ >\ 3\sqrt2\,\lambda\ =\ 6\rho .
 \]
-so $J$ is a nondegenerate interval. If $|x-y|\in J$ then
-$|\pi(x)-\pi(y)|\in[a+\rho,\,b-\rho]\subset I$, hence $g(x)\ne g(y)$. Thus $g$ is a $c$-coloring of $\R^m$ with no monochromatic pair at distance
-in $J=[\alpha,\beta]$, $0<\alpha<\beta$.
+Let $J=[a+3\rho,\,b-3\rho]$, a nondegenerate interval. If $|x-y|\in J$ then
+$|\pi(x)-\pi(y)|\in[a+\rho,b-\rho]\subset[a,b]$, so $g(x)\ne g(y)$.
 
-\emph{Step 3: rescaling.} The map $x\mapsto \tfrac{\alpha+\beta}{2}x$ transforms $g$ into a
-$c$-coloring of $\R^m$ with no monochromatic pair at distance in
-$[1-\varepsilon',1+\varepsilon']$, where $\varepsilon'=(\beta-\alpha)/(\beta+\alpha)>0$.
-This contradicts the hypothesis. Therefore $\chi(\R^m\times K)\ge c+1$.
+\emph{Step 3: rescaling.} Write $J=[\alpha,\beta]$ with $0<\alpha<\beta$. Scaling the plane by
+$2/(\alpha+\beta)$ turns $g$ into a $c$-coloring of $\R^2$ with no monochromatic pair at
+distance in $[1-\varepsilon',1+\varepsilon']$, $\varepsilon'=(\beta-\alpha)/(\beta+\alpha)>0$.
+This contradicts the hypothesis.
 \end{proof}
 
 \begin{remark}
-The coloring $\phi$ in the proof is arbitrary; no measurability is used. Only finitely many
-fibers matter for each unit pair, so by the de Bruijn--Erd\H{o}s theorem the conclusion is
-witnessed by a finite unit-distance graph in $\R^m\times K$, although our argument does not
-exhibit it.
+The coloring $\phi$ is arbitrary; no measurability is used. By the de Bruijn--Erd\H{o}s theorem
+the conclusion is witnessed by a finite unit-distance graph in $\R^2\times K$, although the
+argument does not exhibit one.
 \end{remark}
 
-\section{The upper bound and the proofs of the main results}
+\section{Upper bound and proofs of the main theorems}
 
 \begin{proposition}\label{prop:upper}
-If $K\subset\R^k$ has $\operatorname{diam}K\le 0.4$, then $\chi(\R^2\times K)\le7$.
+If $X\subset\R^k$ has $\operatorname{diam}X\le0.4$, then $\chi(\R^2\times X)\le7$.
 \end{proposition}
 
 \begin{proof}
-Tile the plane by regular hexagons of circumradius $r=0.45$ and color them with seven colors
+Tile the plane by regular hexagons of circumradius $r_0=0.45$ and color them with seven colors
 by the cosets of the index-seven sublattice of the hexagonal lattice, as in the classical
-construction; boundary points receive the color of any incident hexagon. Two points in the
-closure of one hexagon are at distance at most $2r=0.9$, and two points in the closures of
-distinct hexagons of the same color are at distance at least $(\sqrt{21}-2)r>1.16$. Color
-$(x,s)\in\R^2\times K$ by the color of $x$. If $|(x,s)-(y,t)|=1$, then
-$|x-y|^2=1-|s-t|^2\ge 1-0.16$, so $0.91<|x-y|\le1$, and $x,y$ lie in hexagons of different
-colors.
+construction; a boundary point gets the color of any incident hexagon. Two points in the closure
+of one hexagon are at distance at most $2r_0=0.9$, and points in the closures of distinct
+hexagons of the same color are at distance at least $(\sqrt{21}-2)r_0>1.16$. Color
+$(x,s)\in\R^2\times X$ by the color of $x$. If $|(x,s)-(y,t)|=1$ then
+$|x-y|^2=1-|s-t|^2\ge0.84$, so $0.91<|x-y|\le1$, and $x,y$ receive different colors.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:slab}]
+The hypothesis of Theorem~\ref{thm:transfer} with $c=6$ is Theorem~\ref{thm:voronov}. Let
+$\varepsilon$ be small and put $L=\log(1/\varepsilon)$. Choose
+\[
+  d=\lceil 4L\rceil,\qquad n=\Bigl\lceil\frac{\log 6+d\log2}{\kappa}\Bigr\rceil+8,
+\]
+so that~(i) holds, $n\ge8$, $r\ge n/2-1$, and $n\le C_1L$, $r\le n$ for an absolute $C_1$.
+Choose $Q=\lceil r^{(d-1)/2}/\varepsilon\rceil$ and $\lambda=1/Q$, so that
+$\tfrac12\varepsilon r^{-(d-1)/2}\le\lambda\le\varepsilon r^{-(d-1)/2}$ (for $\varepsilon$
+small). Then $\lambda_d=\lambda r^{(d-1)/2}\le\varepsilon$, hence
+$K\subset[0,\varepsilon]^{2nd}$.
+
+Condition (ii): $\lambda r^d\ge\tfrac12\varepsilon r^{(d+1)/2}\ge\tfrac12\varepsilon\,3^{(d+1)/2}
+\ge\tfrac12\varepsilon\,3^{2L}=\tfrac12\varepsilon^{1-2\log3}$, which exceeds $6\sqrt2+1$ for
+$\varepsilon$ small since $2\log3>1$.
+
+Condition (iii): $h_0\le n/4+1\le r$, so $h_0W\le r\cdot r^d/(r-1)\le\tfrac32r^d$ and
+$\lambda^2(h_0W+r^d)\le\tfrac52\lambda^2r^d\le\tfrac52\varepsilon^2r\le\tfrac52\varepsilon^2C_1L<1$
+for $\varepsilon$ small.
+
+Theorem~\ref{thm:transfer} gives $\chi(\R^2\times K)\ge7$ with $K\subset[0,\varepsilon]^{2nd}$.
+Since $2nd\le 2C_1L(4L+1)\le C\log^2(1/\varepsilon)$ for a suitable absolute $C$, and
+$\R^2\times[0,\varepsilon]^{2nd}$ embeds isometrically in $\R^2\times[0,\varepsilon]^k$ for
+$k\ge2nd$ (pad with zeros), we get $\chi(\R^2\times[0,\varepsilon]^k)\ge7$. If also
+$k\le\tfrac1{10}\varepsilon^{-2}$, then $\operatorname{diam}[0,\varepsilon]^k=\varepsilon\sqrt k<0.4$
+and Proposition~\ref{prop:upper} gives $\chi\le7$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Given $\delta>0$, apply Theorem~\ref{thm:transfer} with $m=2$, $c=6$ and $\min(\delta,0.4)$
-in place of $\delta$; its hypothesis is Theorem~\ref{thm:voronov}. This gives $K$ with
-$\operatorname{diam}K<\min(\delta,0.4)$ and $\chi(\R^2\times K)\ge7$, and
-Proposition~\ref{prop:upper} gives equality.
-\end{proof}
-
-\begin{proof}[Proof of Corollary~\ref{cor:slab}]
-In the proof of Theorem~\ref{thm:transfer} with $m=2$ the set $K=\iota_\lambda(\{0,1,2\}^n)$
-lies in $[0,\lambda]^{2n}$, with $n=\max(n_0(6),\lceil 12\sqrt2/\lambda\rceil+1)$. Given small
-$\varepsilon$, choose $\lambda=1/Q\le\varepsilon$ with $\lambda\ge\varepsilon/2$. Then
-$\R^2\times K\subset\R^2\times[0,\varepsilon]^{2n}\subset\R^2\times[0,\varepsilon]^k$ for
-every $k\ge2n$ (pad with zero coordinates), and $2n\le C/\varepsilon$ for a suitable absolute
-$C$ once $\varepsilon$ is small, so $\chi(\R^2\times[0,\varepsilon]^k)\ge7$. If moreover
-$k\le\varepsilon^{-2}/10$, the slab $[0,\varepsilon]^k$ has diameter
-$\varepsilon\sqrt k<0.4$ and Proposition~\ref{prop:upper} gives $\chi\le7$.
+In the proof above $K\subset[0,\varepsilon]^{2nd}$ has diameter at most
+$\varepsilon\sqrt{2nd}=O(\varepsilon\log(1/\varepsilon))$, which is less than $\min(\delta,0.4)$
+for $\varepsilon$ small. Then $\chi(\R^2\times K)\ge7$, and Proposition~\ref{prop:upper} gives
+equality.
 \end{proof}
 
 \section{Remarks}
 
-\begin{remark}[Why $k$ grows]
-In the argument the lattice spacing $\lambda$ is also the fiber scale, because lifted squared
-distances $|p-p'|^2+\lambda^2h$ must hit the value one exactly. The interval avoided in
-Step~1 has length of order $\lambda^2n$, and it must exceed the lattice spacing $\lambda$ for
-Step~2. This forces $n\gtrsim1/\lambda$. To answer Question~\ref{q:voronov} as stated one
-would need fibers of bounded dimension in which dense subsets realize every squared distance in
-a window of width much larger than the lattice spacing, which requires number-theoretic input
-(for instance distance theorems for dense subsets of $\{0,\dots,L\}^k$, $k\ge5$) together with
-control of local obstructions.
+\begin{remark}[On bounded $k$]
+The lifted squared distance $|p-p'|^2+|s-t|^2$ must equal one exactly, so squared distances in
+the fiber are quantized at the scale $\lambda^2$ of the planar lattice, while Step~2 requires
+the avoided window of squared distances to be long compared with $\lambda$. A fiber of bounded
+dimension must therefore realize, robustly with respect to dense subsets, of order $1/\lambda$
+distinct squared distances. With Hamming-type fibers this costs $\log(1/\lambda)$ blocks. A
+bounded-dimensional answer to Question~\ref{q:voronov} seems to require arithmetic input, such
+as uniform distance theorems for dense subsets of $\{0,\dots,L\}^k$ ($k\ge5$) with control of
+local obstructions, or a forbidden-interval theorem tolerating sparse sets of distances.
 \end{remark}
 
 \begin{remark}[Other dimensions]
-Theorem~\ref{thm:transfer} applies to every $m$. For $m=3$ it yields
-$\chi(\R^3\times K)\ge10$ from the known bound $\chi_{[1-\varepsilon,1+\varepsilon]}(\R^3)\ge10$;
-this is weaker than the known $\chi(\R^3\times[0,\varepsilon]^6)\ge10$, whose number of extra
-dimensions does not depend on $\varepsilon$.
-\end{remark}
-
-\begin{remark}[Contrast with the plane]
-For the plane itself the published bounds are $5\le\chi(\R^2)\le7$. By
-Theorem~\ref{thm:main}, adding finitely many parallel copies of the plane at arbitrarily small
-mutual distances already forces the value seven.
+The proof of Theorem~\ref{thm:transfer} works verbatim in $\R^m$ (lattice $\lambda\Z^m$, covering
+radius $\lambda\sqrt m/2$, condition (ii) replaced by $\lambda(r^d-1)>6\sqrt{2m}$): if
+$\chi_{[1-\varepsilon,1+\varepsilon]}(\R^m)\ge c+1$ for all $\varepsilon>0$, then
+$\chi(\R^m\times[0,\varepsilon]^k)\ge c+1$ for $k\ge C_m\log^2(1/\varepsilon)$.
 \end{remark}
 
 \begin{thebibliography}{9}
@@ -277,7 +314,7 @@ P.~Keevash and E.~Long, Frankl--R\"odl type theorems for codes and permutations,
 
 \bibitem{Voronov}
 V.~Voronov, The chromatic number of the plane with an interval of forbidden distances is at
-least 7, arXiv:2304.10163 (version 3, 2025).
+least 7, arXiv:2304.10163, version 3 (2025).
 
 \end{thebibliography}
 
